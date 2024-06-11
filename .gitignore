@@ -35,3 +35,6 @@ swagger-output.json
 
 # lock 파일
 yarn.lock
+
+# ksh
+/.idea

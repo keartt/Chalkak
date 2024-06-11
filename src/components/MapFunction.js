@@ -38,19 +38,27 @@ export default function MapFunction() {
 
     setDrawStatus(!drawStatus);   // 상태 변경
 
-    let sidebar = document.querySelector('.map-sidebar-content');
-    let sidebarToggle = document.querySelector('.map-sidebar-content-toggle');
-    console.log(sidebar);
-    // 스크롤 잠그기
-    if (!drawStatus) {
-      sidebar.style.zIndex = '10';
-      sidebarToggle.style.zIndex = '10';
-      document.body.style.overflow = 'hidden';  // 모바일의 경우 스크롤 정지
-    } else {
-      sidebar.style.zIndex = '25';
-      sidebarToggle.style.zIndex = '25';
-      document.body.style.overflow = 'auto';
+    // 모바일
+    if(window.innerWidth <= 600){
+      // 스크롤 잠그기
+      if (!drawStatus) {
+        document.body.style.overflow = 'hidden';  // 모바일의 경우 스크롤 정지
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    } else{
+      let sidebar = document.querySelector('.map-sidebar-content');
+      let sidebarToggle = document.querySelector('.map-sidebar-content-toggle');
+      // 스크롤 잠그기
+      if (!drawStatus) {
+        sidebar.style.zIndex = '10';
+        sidebarToggle.style.zIndex = '10';
+      } else {
+        sidebar.style.zIndex = '25';
+        sidebarToggle.style.zIndex = '25';
+      }
     }
+    
   }
 
   // 페이지 사이즈 변경
@@ -164,9 +172,9 @@ export default function MapFunction() {
             <button className={`map-func-btn z-[25] bg-white`} onClick={clearCanvas}>
               <GrPowerReset />
             </button>
-            <button className={`map-func-btn z-[25] bg-white`} onClick={saveCanvas}>
+            {/* <button className={`map-func-btn z-[25] bg-white`} onClick={saveCanvas}>
               <IoIosSave />
-            </button>
+            </button> */}
 
           </div>
 

@@ -141,7 +141,7 @@ router.get('/memoryCode/:memoryCodeSeqNo', async (req, res) => {
 // 활성화 추억 장소 목록 조회
 router.get('/active', async (req, res) => {
     //#swagger.tags = ["Place"]
-    //#swagger.summary = "활성화 추억 저장 장소 목록 조회"
+    //#swagger.summary = "최근 접속한 추억 저장 장소 목록 조회"
     let placeList = null;
     let status = 500;
 
@@ -227,7 +227,7 @@ router.delete('/place', async (req, res) => {
 // 장소 정보 조회
 router.get('/place/placeSeqNo', async (req, res) => {
     //#swagger.tags = ["Place"]
-    //#swagger.summary = "장소 시퀀스 번호로 조회"
+    //#swagger.summary = "장소 정보 조회"
     let placeInfo = null;
     let status = 500;
     try {

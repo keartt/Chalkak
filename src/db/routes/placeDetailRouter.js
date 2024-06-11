@@ -7,7 +7,7 @@ const router = express.Router();
 // 장소 상세 정보 목록 조회
 router.get('/placeSeqNo', async (req, res) => {
     //#swagger.tags = ["PlaceDetail"]
-    //#swagger.summary = "장소 상세 정보시퀀스 번호로 조회"
+    //#swagger.summary = "댓글 목록 조회"
 
     let placeDetailList = null;
     let status = 500;
@@ -107,7 +107,7 @@ router.post('/placeDetail', async (req, res) => {
 
 router.delete('/placeDetail', async (req, res) => {
     //#swagger.tags = ["PlaceDetail"]
-    //#swagger.summary = "장소 댓글 정보 삭제"
+    //#swagger.summary = "댓글 삭제"
 
     const place_detail_seq_no = req.query.place_detail_seq_no;
 
@@ -148,7 +148,7 @@ router.delete('/placeDetail', async (req, res) => {
     }
 });
 
-// 장소 INSERT
+// 장소 UPDATE
 router.put('/placeDetail', async (req, res) => {
     //#swagger.tags = ["PlaceDetail"]
     //#swagger.summary = "댓글 수정"

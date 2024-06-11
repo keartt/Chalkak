@@ -1,8 +1,8 @@
-
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { ChromePicker } from 'react-color'
 import useMobile from 'components/UseMobile.js';
 import { FaCircle } from "react-icons/fa";
+
 export default function ColorPicker({ color, setStrokeStyle }) {
     const isMobile = useMobile();
 

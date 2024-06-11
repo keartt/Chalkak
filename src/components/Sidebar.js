@@ -17,6 +17,7 @@ import { IoExitOutline } from "react-icons/io5";
 import { handleLogout } from 'utils/commonFunctionsReact';
 import { MapContext } from 'context/MapContext';
 import axiosInstance from 'utils/axiosInstance';
+import { IoBookOutline } from "react-icons/io5";
 
 export default function Sidebar() {
 
@@ -29,6 +30,9 @@ export default function Sidebar() {
     const [isMobileMenubarOpen, setIsMobileMenubarOpen] = useState(false);  // 모바일 메뉴바 펼침 상태
 
     const [memoryNmMenu, setMemoryNmMenu] = useState('');
+
+    const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
     // 메뉴 클릭 이벤트
     const handleMenuClick = (target) => {
         setIsMobileMenubarOpen(false);   // 모바일 메뉴 바 상태 false
@@ -71,7 +75,7 @@ export default function Sidebar() {
 
                     <div className='map-menu-box'>
 
-                        <div>
+                        <div className="cursor-pointer" onClick={() => window.open(`${apiUrl}/swagger`, '_blank')}>
                             <img src="/images/chalkak_logo.png" alt="Chalkak Logo" width="200px" />
                         </div>
 

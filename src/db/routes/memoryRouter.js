@@ -8,7 +8,7 @@ const { generateRandomString } = require('../../utils/commonFunctions');
 // 활성화 추억으로 연결
 router.get('/connection/active', async (req, res) => {
     //#swagger.tags = ["Memory"]
-    //#swagger.summary = "활성화 추억으로 연결"
+    //#swagger.summary = "최근 접속한 추억으로 연결"
     await pool.query('BEGIN'); // 트랜잭션 시작
 
     let status = 500;
@@ -230,7 +230,7 @@ router.get('/inactive', async (req, res) => {
 // 활성화 추억 변경
 router.put('/:memorySeqNo/active', async (req, res) => {
     //#swagger.tags = ["Memory"]
-    //#swagger.summary = "활성화 추억 변경"
+    //#swagger.summary = "최근 접속한 추억 변경"
     const reqMemorySeqNo = req.params.memorySeqNo;
     let status = 500;
     let resultMsg = '추억 변경 중 문제가 발생했습니다. 다시 시도해 주세요.';
@@ -284,6 +284,7 @@ router.put('/:memorySeqNo/active', async (req, res) => {
 
 router.delete('/:memorySeqNo', async (req, res) => {
     //#swagger.tags = ["Memory"]
+    //#swagger.summary = "추억 삭제"
     const reqMemorySeqNo = req.params.memorySeqNo;
     let status = 500;
     let resultMsg = '연결 해제중 문제가 발생했습니다. 다시 시도해 주세요.';
@@ -322,7 +323,6 @@ router.delete('/:memorySeqNo', async (req, res) => {
                 userSeqNo: loginUser.user_seq_no
             }
             const placeDeleteRes = await queries.deletePlace(deletePlaceData);
-            console.log(placeDeleteRes);
             if (!placeDeleteRes) {
                 throw new Error(resultMsg);
             }
@@ -354,7 +354,6 @@ router.delete('/:memorySeqNo', async (req, res) => {
         await pool.query('COMMIT'); // 트랜잭션 커밋
 
     } catch (error) {
-        console.log(error);
         await pool.query('ROLLBACK'); // 트랜잭션 롤백
     } finally {
         res.status(status).json({ resultMsg: resultMsg, redirectUrl: redirectUrl });

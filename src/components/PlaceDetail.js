@@ -41,7 +41,6 @@ export default function PlaceDetail({ onClose, placeSeqNo }) {
     const getPlaceDetailList = async () => {
 
         if (Object.keys(placeData).length === 0 && placeData.constructor === Object) return;
-
         try {
             const res = await axiosInstance.get(`/api/placeDetails/placeSeqNo`, {
                 params: {
@@ -58,6 +57,8 @@ export default function PlaceDetail({ onClose, placeSeqNo }) {
                     }
                 });
                 setPlaceDetailList(res.data.placeDetailList);
+            } else{
+                setPlaceDetailList(null);
             }
 
 
@@ -166,6 +167,8 @@ export default function PlaceDetail({ onClose, placeSeqNo }) {
             });
 
             if (res.status === 200) {
+
+
                 // 기존 스타일 reset
                 document.querySelectorAll('[id^="modify_"]').forEach(element => { if (element.style.display === 'none') { element.style.display = 'block'; } });
                 document.querySelectorAll('[id^="delete_"]').forEach(element => { if (element.style.display === 'none') { element.style.display = 'block'; } });
@@ -173,7 +176,6 @@ export default function PlaceDetail({ onClose, placeSeqNo }) {
                 document.querySelectorAll('[id^="content_ta_"]').forEach(element => { if (element.style.display === 'block') { element.style.display = 'none'; } });
                 document.querySelectorAll('[id^="save_"]').forEach(element => { if (element.style.display === 'block') { element.style.display = 'none'; } });
                 document.querySelectorAll('[id^="cancel_"]').forEach(element => { if (element.style.display === 'block') { element.style.display = 'none'; } });
-
 
                 getPlaceDetailList();
             } else {

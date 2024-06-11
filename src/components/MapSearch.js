@@ -265,6 +265,7 @@ export default function MapSearch({ closeEvent }) {
             debounceTimeout = setTimeout(() => {
                 // 기존의 마커들 제거
                 clearAllData();
+                getPlaceList();
 
                 if (keyword.trim() !== '') {
                     if (!psRef.current) {
@@ -322,8 +323,11 @@ export default function MapSearch({ closeEvent }) {
         setTimeout(() => {
             if (scrollTop !== 0 && searchLastCheck === false && Math.abs(scrollHeight - scrollTop - clientHeight) <= 1) {
                 let newPageNumber = pageNumber + 1;
-                handleSearch(newPageNumber);
                 setPageNumber(newPageNumber);
+
+                setTimeout(() => {
+                    handleSearch(newPageNumber);
+                }, 200);
             }
 
         }, 200);
@@ -349,7 +353,7 @@ export default function MapSearch({ closeEvent }) {
                     />
 
                     <div className='place-search-box '>
-                        <Scrollbars thumbSize={85} onScrollFrame={(values) => { handleScrollToBottom(values); }} >
+                        <Scrollbars onScrollFrame={(values) => { handleScrollToBottom(values); }} >
                             {datas.length === 0 &&
                                 <span className='flex mt-5'>검색 결과가 존재하지 않습니다.</span>
                             }

@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.post('/kakao', async (req, res) => {
     /*#swagger.tags = ["Auth"]
-    #swagger.summary = "카카오 인증 api"
-    #swagger.description = "설명"
+    #swagger.summary = "Kakao 로그인 인증 요청"
+    #swagger.description = "Kakao 계정을 인증하는 API"
     #swagger.parameters['code'] = { description: '카카오 인증 코드' }*/
     try {
 
